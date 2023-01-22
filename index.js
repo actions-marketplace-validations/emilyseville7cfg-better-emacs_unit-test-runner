@@ -5,7 +5,6 @@ const child_process = require("child_process")
 try {
     const testFiles = core.getInput("test-files")
 
-    const filesAsString = files.map(file => `"${file}"`).join(" ")
     child_process.exec(`ls --all`, (error, stdout, stderr) => {
         if (error) {
             console.error(`exec error: ${error}`)
@@ -18,6 +17,7 @@ try {
     return
 
     glob(testFiles, {}, (_er, files) => {
+        const filesAsString = files.map(file => `"${file}"`).join(" ")
         child_process.exec(`bash main.sh ${filesAsString}`, (error, stdout, stderr) => {
             if (error) {
                 console.error(`exec error: ${error}`)
