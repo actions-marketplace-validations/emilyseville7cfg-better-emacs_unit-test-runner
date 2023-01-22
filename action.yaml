@@ -1,5 +1,8 @@
 name: Unit test runner
 description: Unit test runner for ERT
+branding:
+  color: green
+  icon: check
 inputs:
   test-files:
     description: |
