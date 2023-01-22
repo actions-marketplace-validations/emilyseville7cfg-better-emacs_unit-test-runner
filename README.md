@@ -4,7 +4,7 @@ A unit test runner.
 
 ## Features
 
-- [ ] Run ERT tests from files matched by a specific glob
+- [x] Run ERT tests from files matched by a specific glob
 
 ## Inputs
 
