@@ -7,7 +7,12 @@ try {
 
     glob(testFiles, {}, (_er, files) => {
         const filesAsString = files.map(file => `"${file}"`).join(" ")
-        child_process.exec(`sudo apt update -y && sudo apt install emacs && for file in ${filesAsString}; do emacs -batch -l ert -l "\${file}" -f ert-run-tests-batch-and-exit; done`, (error, stdout, stderr) => {
+        const commands = [
+            "sudo apt update -y",
+            "sudo apt install emacs",
+            `for file in ${filesAsString}; do emacs -batch -l ert -l "\${file}" -f ert-run-tests-batch-and-exit; done`
+        ]
+        child_process.exec(commands.join(" && "), (error, stdout, stderr) => {
             if (error) {
                 console.error(`exec error: ${error}`)
                 return
