@@ -5,7 +5,6 @@ inputs:
     description: |
       Glob matching test files to run
       "glob" JavaScript package is used
-    required: true
     default: tests.el
 runs:
   using: node16
