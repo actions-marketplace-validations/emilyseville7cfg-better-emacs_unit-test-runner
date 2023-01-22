@@ -1,13 +1,12 @@
 name: Unit test runner
 description: Unit test runner for ERT
 inputs:
-  who-to-greet:
-    description: Who to greet
+  test-files:
+    description: |
+      Glob matching test files to run
+      "glob" JavaScript package is used
     required: true
-    default: 'World'
-outputs:
-  time:
-    description: The time we greeted you
+    default: tests.el
 runs:
   using: node16
   main: index.js

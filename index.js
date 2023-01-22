@@ -1,20 +1,11 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
+const core = require("@actions/core");
+const glob = require("glob")
 
 try {
-    // `who-to-greet` input defined in action metadata file
-    const nameToGreet = core.getInput('who-to-greet');
-    console.log(`Hello ${nameToGreet}!`);
-    const time = (new Date()).toTimeString();
-    core.setOutput("time", time);
+    const testFiles = core.getInput("test-files");
 
-    const testFolder = '.';
-    const fs = require('fs');
-
-    fs.readdir(testFolder, (_err, files) => {
-        files.forEach(file => {
-            console.log(file);
-        });
+    glob(testFiles, { cwd: true }, (_er, files) => {
+        files.forEach(file => console.log(`${file} matches`))
     });
 } catch (error) {
     core.setFailed(error.message);
