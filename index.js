@@ -6,7 +6,7 @@ try {
     const testFiles = core.getInput("test-files")
 
     glob(testFiles, {}, (_er, files) => {
-        child_process.exec(`./main.sh ${files.map(file => `"${file}"`).join(" ")}`, {}, (error, stdout, stderr) => {
+        child_process.execFile("main.sh", files, { cwd: "." }, (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`)
                 return
