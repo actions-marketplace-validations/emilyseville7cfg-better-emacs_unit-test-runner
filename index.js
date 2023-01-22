@@ -15,6 +15,7 @@ try {
         child_process.exec(commands.join(" && "), (error, stdout, stderr) => {
             if (error) {
                 console.error(`exec error: ${error}`)
+                core.setFailed(error.message)
                 return
             }
             console.log(`stdout: ${stdout}`)
